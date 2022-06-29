@@ -1,0 +1,5 @@
+package com.meta.ck.controller;
+
+public class HomeController {
+
+}

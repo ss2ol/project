@@ -1,0 +1,47 @@
+package com.meta.ck.controller;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+@Controller
+public class HomeController {
+	@Autowired
+	private ServletContext sevletConext;
+	
+	@GetMapping("/")
+	public String home() {
+		return "ckeditor5";
+	}
+	
+	@ResponseBody
+	@PostMapping("/upload")
+	public Map<String, Object> fileupload(@RequestParam(value ="upload") MultipartFile file ){
+		String path = sevletConext.getRealPath("/upload/");
+		String filename = file.getOriginalFilename();
+		File destfile = new File(path+filename);
+		Map<String, Object> json = new HashMap<>();
+		try {
+			file.transferTo(destfile);
+			json.put("upload", 1);
+			json.put("filename", filename);
+			json.put("url","/fileview/" +filename);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return json;
+	}
+	
+	
+}

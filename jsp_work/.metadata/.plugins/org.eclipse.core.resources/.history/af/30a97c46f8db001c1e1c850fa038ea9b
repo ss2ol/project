@@ -1,0 +1,31 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import db.JdbcUtil;
+import dto.Account;
+
+public class AccountDAO {
+	public void insertAccount(Connection conn, Account acc) throws SQLException{
+		String sql = "insert into account (id, name, balance) values (?,?,?)";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setNString(1, acc.getId());
+			pstmt.setNString(2, acc.getName());
+			pstmt.setInt(3, acc.getBalance());
+			pstmt.executeQuery();
+		} catch (SQLException e) {
+			throw e;
+		}finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	public Account selectAccount(Connection conn, String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

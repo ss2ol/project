@@ -1,0 +1,5 @@
+package com.meta.rest.controller;
+
+public class TestController {
+
+}

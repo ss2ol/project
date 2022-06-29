@@ -1,0 +1,23 @@
+package service;
+
+import java.sql.Connection;
+
+import dao.AccountDAO;
+import db.JdbcUtil;
+import dto.Account;
+
+public class AccountService {
+	public void makeAccount(Account acc) throws Exception {
+		Connection conn = JdbcUtil.getConnection();
+		AccountDAO dao = new AccountDAO();
+		
+		try {
+			dao.insertAccount(conn, acc);
+		} catch (Exception e) {
+			throw e;
+		}finally {
+			JdbcUtil.close(conn);
+		}
+	}
+
+}

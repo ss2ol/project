@@ -1,0 +1,5 @@
+package com.meta.bank.service;
+
+public class AccountServiceImpl {
+
+}

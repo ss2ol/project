@@ -1,0 +1,5 @@
+package com.meta.bank.dto;
+
+public class Account {
+
+}

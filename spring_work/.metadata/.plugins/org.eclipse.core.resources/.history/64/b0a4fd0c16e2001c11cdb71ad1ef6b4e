@@ -1,0 +1,44 @@
+package com.meta.rec.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.meta.rec.dto.FileVo;
+import com.meta.rec.service.FileUploadService;
+
+@RestController
+public class DBFileController {
+
+	@Autowired
+	FileUploadService fileUploadService;
+	
+	@GetMapping("/")
+	public String main() {
+		return "voice_save";
+	}
+	
+	@PostMapping("/dbupload")
+	public void dbupload(@RequestParam("file") MultipartFile file) {
+		try {
+			if(file != null && !file.isEmpty()) {
+			FileVo fileVo = new FileVo();
+			fileVo.setId(fileUploadService.getFileId());
+			fileVo.setDirectory_name("");
+			fileVo.setName(file.getOriginalFilename());
+			fileVo.setTsize(file.getSize());
+			fileVo.setContent_type(file.getContentType());
+			fileVo.setData(file.getBytes());
+			fileUploadService.fileDBUpload(fileVo);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		}
+	}
+}

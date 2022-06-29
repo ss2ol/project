@@ -1,0 +1,22 @@
+package com.meta.bank.dao;
+
+import javax.sql.DataSource;
+
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+
+import com.meta.bank.dto.Account;
+
+public class AccountDAOImpl implements AccountDAO {
+
+	private SimpleJdbcInsert jdbcInsert;
+	
+	public void setDataSource(DataSource dataSource) {
+		jdbcInsert = new SimpleJdbcInsert(dataSource);
+	}
+	
+	@Override
+	public void insertAccount(Account acc) throws Exception {
+		
+	}
+
+}

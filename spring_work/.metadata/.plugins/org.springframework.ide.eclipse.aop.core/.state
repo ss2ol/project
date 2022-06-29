@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="uploadproj-1"/>
+<aop-project name="CK"/>
+<aop-project name="demo"/>
+<aop-project name="JPA"/>
+<aop-project name="Bank"/>
+<aop-project name="rec"/>
+<aop-project name="rest-1"/>
+<aop-project name="empJPA-1"/>
+<aop-project name="Bank2"/>
+<aop-project name="board"/>
+<aop-project name="bankrest"/>
+</aop-reference-model>

@@ -1,0 +1,40 @@
+
+package dao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;
+
+public class AccountDAO {
+	public static Connection getConnection() {
+		Connection conn = null;
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource)initContext.lookup("java:comp/env/oracleDB");
+			conn = ds.getConnection();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return conn;
+		
+		
+		public static void Close(Connection conn) {
+			try {
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		
+	}
+}

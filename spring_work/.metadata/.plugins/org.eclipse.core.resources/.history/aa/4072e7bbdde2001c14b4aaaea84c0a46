@@ -1,0 +1,12 @@
+package com.meta.bank.dao;
+
+import com.meta.bank.dto.Account;
+
+public class AccountDAOImpl implements AccountDAO {
+
+	@Override
+	public void insertAccount(Account acc) throws Exception {
+		
+	}
+
+}

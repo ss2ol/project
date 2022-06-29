@@ -1,0 +1,48 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class JDBCConnect {
+	static Connection conn = null;
+	static PreparedStatement stmt = null;
+	
+	public static void insertAccount(String id, String name, int balance0) {
+		try {
+			Class.forName("oracle.jdbc.OracleDriver");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","hr","hr");
+			//System.out.println("DB연결 성공");	
+			
+			String insertSql = "insert into account values (?,?,?)";
+			stmt = conn.prepareStatement(insertSql);
+			stmt.setNString(1,id);
+			stmt.setNString(2,name);
+			stmt.setInt(3, balance0);
+			
+			int cnt = stmt.executeUpdate();
+			System.out.println(cnt + "행이 삽입 되었습니다");
+		} catch (ClassNotFoundException e) {
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+			} catch (SQLException e2) {
+				
+			}
+		}
+	}
+	public static void updateAccount(String id, int money) {
+		
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		insertAccount("10005", "song", 300000);
+
+	}
+
+}

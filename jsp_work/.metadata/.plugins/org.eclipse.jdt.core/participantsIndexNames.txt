@@ -1,0 +1,7 @@
+INDEX VERSION 1.131
+C:\hjs\jsp_work\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1559792918.index
+\Bank\src
+C:\hjs\jsp_work\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2063080771.index
+\ex1\src
+C:\hjs\jsp_work\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\291170650.index
+\0524\src

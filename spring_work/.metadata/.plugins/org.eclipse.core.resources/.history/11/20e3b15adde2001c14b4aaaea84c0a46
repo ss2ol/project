@@ -1,0 +1,5 @@
+package com.meta.bank.dao;
+
+public interface AccountDAO {
+
+}

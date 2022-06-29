@@ -1,0 +1,5 @@
+package com.meta.jpa.model;
+
+public class AccountEntity {
+
+}

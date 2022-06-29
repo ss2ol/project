@@ -1,0 +1,76 @@
+
+package dao;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+
+
+public class AccountDAO {
+	public static Connection getConnection() {
+		Connection conn = null;
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource)initContext.lookup("java:comp/env/oracleDB");
+			conn = ds.getConnection();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return conn;
+		
+		
+		public static void close (Connection conn) {
+			try {
+				if(conn != null) {
+					conn.close();
+					conn = null;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public static void close (Statement stmt) {
+			try {
+				if(stmt != null) {
+					stmt.close();
+					stmt = null;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		public static void close (Result re) {
+			try {
+				if(re != null) {
+					re.close();
+					re = null;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public List<Account> accountList(Connection conn){
+			Statement stmt = null;
+			ResultSet re =null;
+			List<Acoount> accs = new ArrayList<>();
+			String sql = "select * from "
+			
+		}
+		
+		
+	}
+}

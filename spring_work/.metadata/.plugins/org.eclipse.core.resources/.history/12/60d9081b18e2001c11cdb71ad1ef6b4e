@@ -1,0 +1,67 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+$(function(){
+	const recode = document.getElementById("recode"); // $("#recode")
+	const stop =  document.getElementById("stop");
+	
+	if(navigator.mediaDevices){
+		consloe.log("getUserMedia supported");
+		const conatraints = {audio: true};
+		let chunks =[]; 		
+
+		navigator.mediaDevices.getUserMedia(conatraints).then(stream=>{
+			const mediaRecorder = new mediaRecorder(stream);
+			recode.onclick = ()=>{
+				chunks = [];
+				mediaRecorder.start;
+				
+				recode.style.background ="red";
+				recode.style.color ="black";
+			}
+			stop.onclick= ()=>{
+				mediaRecorder.stop;
+				recode.style.background ="";
+				recode.style.color ="";
+			}
+			mediaRecorder.ondataavailable=(e){
+				chunks.push(e.data);
+			}
+			mediaRecorder.onstop = (e) =>{
+				const blob = new Blob(chunks,{
+					'type':'audio/ogg codes = opus'
+				});
+				let formdata = new FormData();
+				formdata.append("data",blob);
+				
+				let xhr =new XMLHttpRequest();
+				xhr.onload = () => {
+					console.log (xhr.status);
+					if(xhr.status == 200){
+						alert(xhr.response);
+					}
+				}
+				xhr.open("POST","/dbupload",true);
+				xhr.send(formdata);
+				
+			}
+		}).catch(err=>{
+			console.log("Err:" +err);
+		});
+	}
+});
+
+</script>
+</head>
+<body>
+<button id ="recode">녹음</button>
+<button id ="stop">정지</button>
+</body>
+</html>

@@ -1,0 +1,33 @@
+package com.meta.bank.dao;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+
+import com.meta.bank.dto.Account;
+
+public class AccountDAOImpl implements AccountDAO {
+
+	private SimpleJdbcInsert jdbcInsert;
+	
+	private DataSource dataSource;
+	
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource =dataSource;
+		jdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("account");
+	}
+	
+	@Override
+	public void insertAccount(Account acc) throws Exception {
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", acc.getId());
+		params.put("naem", acc.getName());
+		params.put("balance", acc.getBalance());
+		jdbcInsert.execute(params);
+		
+	}
+
+}

@@ -1,0 +1,48 @@
+package com.meta.jpa.service;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.meta.jpa.dto.Account;
+import com.meta.jpa.model.AccountEntity;
+import com.meta.jpa.repository.AccountRepository;
+
+@Service
+public class AccountServiceImpl implements AccountService {
+
+	@Autowired
+	AccountRepository accountRepository;
+	
+	ModelMapper modelMapper = new ModelMapper();
+
+	@Override
+	public Account accountInfo(String id) throws Exception {
+
+	}
+
+	@Override
+	public List<Account> accountList() throws Exception {
+		
+	}
+
+	@Override
+	public void makeAccoount(Account acc) throws Exception {
+		AccountEntity accountEntity = modelMapper.map(acc,AccountEntity.class);
+		accountRepository.save(accountEntity);
+
+	}
+
+	@Override
+	public void deposit(String id, int money) throws Exception {
+
+		
+	}
+
+	@Override
+	public void withdraw(String id, int money) throws Exception {
+	
+}
+}

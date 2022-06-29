@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meta.rec.dao.FileDAO">
+<select id="maxFileID" resultType="integer">
+<![CDATA[
+select max(id) from tfile
+]]>
+</select>
+
+
+<insert id="insertFile" parameterType="FileVo">
+<![CDATA[
+insert into tfile(id, directory_name, name, tsize, content_type, upload_date, data)
+values(#{id},#{directory_name},#{name},#{tsize},#{content_type},sysdate,#{data})
+]]>
+</insert>
+
+
+<select id="selectFile" resultType="FileVo" parameterType="int">
+<![CDATA[
+select * from tfile where id =#{id}
+]]>
+</select>
+
+
+</mapper>

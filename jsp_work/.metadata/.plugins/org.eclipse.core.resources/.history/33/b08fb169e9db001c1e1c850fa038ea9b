@@ -1,0 +1,51 @@
+package db;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+public class jdbcUtil {
+	private jdbcUtil () {}
+	public static Connection  getConnection() {
+		Connection conn = null;
+		try {
+			Context context = new InitialContext();
+			DataSource ds = (DataSource)context.lookup("java:comp/env/oracleDB");
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (NamingException e) {
+			e.printStackTrace();
+		}
+		return conn;
+	}
+	
+	public static boolean isConnenction(Connection conn){
+		boolean validateConnection = true;
+		try {
+			if(conn == null || conn.isClosed()) {
+				validateConnection = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	} 
+	
+	public static void close(Statement stmt){
+		try {
+			if(stmt != null) {
+				stmt.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+}

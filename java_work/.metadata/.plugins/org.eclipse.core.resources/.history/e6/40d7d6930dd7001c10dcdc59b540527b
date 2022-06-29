@@ -1,0 +1,33 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class JDBCConnect {
+	Connection conn = null;
+	Statement stmt = null;
+	
+	public static void main(String[] args) {
+		try {
+			Class.forName("oracle.jdbc.OracleDriver");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","hr","hr");
+			//System.out.println("DB연결 성공");	
+			stmt = conn.createStatement();
+			String insertSql = "insert into account values ('1004','park', 200000)";
+			int cnt = stmt.executeUpdate(insertSql);
+			System.out.println(cnt + "행이 삽입 되었습니다");
+		} catch (ClassNotFoundException e) {
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+			} catch (SQLException e2) {
+				
+			}
+		}
+
+	}
+
+}

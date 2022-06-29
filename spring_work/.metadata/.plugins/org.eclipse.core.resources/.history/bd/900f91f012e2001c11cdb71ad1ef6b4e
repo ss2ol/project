@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+$(function(){
+	const recode = document.getElementById("recode"); // $("#recode")
+	const stop =  document.getElementById("stop");
+});
+
+</script>
+</head>
+<body>
+<button id ="recode">녹음</button>
+<button id ="stop">정지</button>
+</body>
+</html>

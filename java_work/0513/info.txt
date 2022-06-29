@@ -1,0 +1,6 @@
+#person info
+#Fri May 13 14:54:30 KST 2022
+name=\uD64D\uAE38\uB3D9
+weight=70
+age=20
+height=180.4
